@@ -1,0 +1,50 @@
+/*General aspect*/
+body
+{
+  background-color: black;
+  color: white;
+  font-family: "Courier New", serif;
+}
+
+/*header aspect*/
+header
+{
+  border-bottom: 2px solid white;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+nav ul
+{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  margin-left: px;
+}
+nav li
+{
+  margin-left: 15px;
+}
+nav a
+{
+  color: white;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+}
+nav a:hover
+{
+  color: rgb(0,150,0);
+}
+
+/*articles aspect*/
+article
+{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+}
