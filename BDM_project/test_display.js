@@ -1,4 +1,4 @@
-alert("Test")
+// alert("Test")
 
 // var requestURL = "https://LouisDumont.github.io/BDM_project/Content/test.json";
 var requestURL = "https://LouisDumont.github.io/BDM_project/Content/first_chapter.json";
@@ -8,9 +8,10 @@ request.responseType = 'json';
 request.send();
 request.onload = function() {
     var content = request.response;
-    alert(content[0]["id"]);
+    node_text = content[0]["description"]
+    alert(node_text); // ["id"]
     // var test = prompt("Quel contenu afficher?");
-    document.getElementById("node_text").innerText = content;
+    document.getElementById("node_text").innerText = node_text;
   }
 
 /*
