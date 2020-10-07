@@ -31,6 +31,11 @@ temp_dict["scene_9\n"] = 9;
 temp_dict["scene_10\n"] = 10;
 temp_dict["scene_11\n"] = 11;
 temp_dict["scene_12\n"] = 12;
+temp_dict["scene_13\n"] = 13;
+temp_dict["scene_14\n"] = 14;
+temp_dict["scene_15\n"] = 15;
+temp_dict["scene_16\n"] = 16;
+temp_dict["scene_17\n"] = 17;
 
 
 function print_content(content, id){
