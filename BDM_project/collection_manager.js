@@ -1,21 +1,14 @@
 function CollectionManager(initial_state, collection_dict){
     this._collection_dict = collection_dict;
-    console.log(this._collection_dict);
-    console.log(this._collection_dict.chapter_1);
     this.is_navigation_displayed = initial_state;
     this._return_url = "";
 
     this.trigger_chapter = function(chapter_id){
-        console.log("CollectionManager.trigger_chapter called");
-        console.log(chapter_id);
         // Return the URL of the selected chapter
-        console.log(this._collection_dict[chapter_id]._url);
         this._return_url = this._collection_dict[chapter_id]._url;
     };
 
     this.display = function(){
-        console.log("CollectionManager.display called");
-        console.log(this.is_navigation_displayed);
         if (this.is_navigation_displayed){
             this.display_collection_navigation();
         }
@@ -25,7 +18,6 @@ function CollectionManager(initial_state, collection_dict){
     };
 
     this.display_collection_navigation = function(){
-        console.log("Displaying collection navigation");
         var collection_navigation_element = document.getElementById("collection_navigation");
         collection_navigation_element.innerHTML = "";
 
@@ -43,7 +35,6 @@ function CollectionManager(initial_state, collection_dict){
     }
 
     this.display_return_button = function(){
-        console.log("Displaying return button");
         var collection_navigation_element = document.getElementById("collection_navigation");
         collection_navigation_element.innerHTML = "";
 
