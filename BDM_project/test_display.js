@@ -45,7 +45,7 @@ function print_content(content, id){
   document.getElementById("node_text").innerText = node_text;
   document.getElementById("choice_list").innerHTML = "";
 
-  for (i=0, c=choices.length; i<c; i++){
+  for (var i=0, c=choices.length; i<c; i++){
     var choice = choices[i]
     var new_choice_text = document.createElement('p');
     var new_choice = document.createElement('li');

@@ -50,7 +50,7 @@ function SessionManager(init_state, collection_dict){
         set: function(obj, prop, val){
             if (prop === "_is_content_loaded"){
                 if (val === false){
-                    this.trigger_collection_navigation();
+                    // this.trigger_collection_navigation();
                 }
                 else {
                     this.trigger_chapter_navigation();
@@ -66,6 +66,7 @@ function SessionManager(init_state, collection_dict){
     this.trigger_collection_navigation = function(){
         this._collection_manager.is_navigation_displayed = true;
         this._collection_manager.display();
+        this._chapter_manager.clean_content();
         this._chapter_manager.display();
     };
 

@@ -1,22 +1,36 @@
-// const delay = ms => new Promise(res => setTimeout(res, ms));
-
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
-  
+var nodeId_to_int_parser = function(nodeId){
+    var aux = nodeId.split("_")[1].split("\\")[0];
+    return parseInt(aux);
+}
 
 function ChapterManager(init_state){
     this.state = init_state;
     this.chapter_content = {};
+    this._nodes_dict = {};
+    this._is_content_loaded = false;
     this.url = "";
+
+    this.make_nodes_dict = function(content){
+        // Returns a dict mapping from node_ids to idx in the content array
+        var dict = {};
+        for (var i=0, c=content.length; i<c; i++){
+            var node = content[i];
+            var idx = nodeId_to_int_parser(node.id);
+            dict[node.id] = idx;
+        }
+        return dict;
+    }
 
     this.affect_content = function(some_request){
         this.chapter_content = some_request.response;
+        this._nodes_dict = this.make_nodes_dict(this.chapter_content);
         this._is_content_loaded = true;
+    }
+
+    this.clean_content = function(){
+        this.chapter_content = {};
+        this._nodes_dict = {};
+        this._is_content_loaded = false;
     }
 
     this.load_chapter = function(chapter_url){
@@ -32,22 +46,22 @@ function ChapterManager(init_state){
 
         request.onload = (function(){
             this.affect_content(request);
-            console.log("HERE");
-            console.log(this.chapter_content);
         }).bind(this);
 
         request.send();
 
     }
 
-    this.make_choice = function(){console.log("ChapterManager.make_choice called")};
+    this.go_to_node = function(id){
+        console.log("ChapterManager.go_to_node called");
+        this.display_content(id)
+    };
 
     this.display = function(){
         console.log("ChapterManager.display called");
-        console.log(this.chapter_content);
 
-        if (this.chapter_content !== {}){
-            this.display_content();
+        if (Array.isArray(this.chapter_content)){
+            this.display_content(0);
         }
         else {
             this.empty_display();
@@ -55,12 +69,36 @@ function ChapterManager(init_state){
     }
 
     this.empty_display = function(){
+        console.log("ChapterManager.empty_display called");
         var collection_navigation_element = document.getElementById("node_navigation");
         collection_navigation_element.innerHTML = "<p id=\"node_text\"></p><ul id=\"choice_list\"></ul>";
     }
     
-    this.display_content = function(){
-        console.log("ChapterManager.display_content called")
+    this.display_content = function(id){
+        console.log("ChapterManager.display_content called");
+
+        var node_text = this.chapter_content[id]["description"];
+        var choices = this.chapter_content[id]["choices"];
+
+        document.getElementById("node_text").innerText = node_text;
+        document.getElementById("choice_list").innerHTML = "";
+
+        for (var i=0, c=choices.length; i<c; i++){
+            var choice = choices[i]
+            var new_choice_text = document.createElement('p');
+            var new_choice = document.createElement('li');
+
+            new_choice_text.innerText = choice["description"];
+            new_choice.appendChild(new_choice_text);
+            new_choice.node_id = this._nodes_dict[choice["res_node"]] - 1
+            var go_to_node_binded = this.go_to_node.bind(this);
+            new_choice.addEventListener('click', function(){
+                console.log(this.node_id);
+                go_to_node_binded(this.node_id);  // this.chapter_content, 
+            });
+            document.getElementById("choice_list").appendChild(new_choice);
+
+        }
     };
 
 }
