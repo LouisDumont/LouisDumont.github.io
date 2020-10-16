@@ -22,7 +22,7 @@ function SessionManager(init_state, collection_dict){
     this.state = init_state;  // state should be "collection_activation" or "chapter_navigation"
     this._collection_dict = collection_dict;
 
-    var collection_manager = new CollectionManager(true, this._collection_dict); //this._collection_manager
+    var collection_manager = new CollectionManager(true, this._collection_dict);
 
     // Add change listener on this._collection_manager._return_url
     var collection_change_handler = {
@@ -43,14 +43,13 @@ function SessionManager(init_state, collection_dict){
     this._collection_manager = new Proxy(collection_manager, collection_change_handler);
 
 
-    var chapter_manager = new ChapterManager(false); // Should be init later?
+    var chapter_manager = new ChapterManager(false);
 
     // Add change listener on this._collection_manager._return_url
     var chapter_change_handler = {
         set: function(obj, prop, val){
             if (prop === "_is_content_loaded"){
                 if (val === false){
-                    // this.trigger_collection_navigation();
                 }
                 else {
                     this.trigger_chapter_navigation();
