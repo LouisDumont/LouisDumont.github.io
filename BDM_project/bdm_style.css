@@ -48,3 +48,51 @@ article
   text-align: justify;
   margin: auto;
 }
+
+/* game session */
+#navigation_panel
+{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  border-style: none solid none solid;
+  padding: 0px 20px 0px 20px;
+}
+
+/* collection_navigation */
+#collection_navigation
+{
+  display: flex;
+  flex-direction: column;
+}
+.chapter_button
+{
+  background-color: black;
+  color: white;
+  border-color: white;
+  font-family: "Courier New", serif;
+  border-style: solid;
+  padding: 3px;
+  margin: 2px;
+}
+
+/* node navigation */
+#node_text
+{
+  border-style: solid;
+  padding: 20px;
+}
+.choice
+{
+  border-style: solid;
+  padding: 3px;
+  margin: 2px;
+}
+.choice_text:hover
+{
+  color: rgb(0,150,0);
+}

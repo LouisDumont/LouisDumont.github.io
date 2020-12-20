@@ -23,6 +23,7 @@ function CollectionManager(initial_state, collection_dict){
 
         for (var chapter in this._collection_dict){
             var chapter_button = document.createElement("button");
+            chapter_button.classList.add("chapter_button");
             chapter_button.id = this._collection_dict[chapter]._id;
             chapter_button.innerText = this._collection_dict[chapter]._name;
             

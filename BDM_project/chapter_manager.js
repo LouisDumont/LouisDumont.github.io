@@ -80,6 +80,8 @@ function ChapterManager(init_state){
         var node_text = this.chapter_content[id]["description"];
         var choices = this.chapter_content[id]["choices"];
 
+        // TODO: create node_text and choice_list if they don't exist, so that to avoid creating them in play_page.html
+
         document.getElementById("node_text").innerText = node_text;
         document.getElementById("choice_list").innerHTML = "";
 
@@ -87,6 +89,9 @@ function ChapterManager(init_state){
             var choice = choices[i]
             var new_choice_text = document.createElement('p');
             var new_choice = document.createElement('li');
+
+            new_choice.classList.add("choice");
+            new_choice_text.classList.add("choice_text");
 
             new_choice_text.innerText = choice["description"];
             new_choice.appendChild(new_choice_text);
