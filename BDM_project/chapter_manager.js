@@ -70,8 +70,7 @@ function ChapterManager(init_state){
 
     this.empty_display = function(){
         console.log("ChapterManager.empty_display called");
-        var collection_navigation_element = document.getElementById("node_navigation");
-        collection_navigation_element.innerHTML = "<p id=\"node_text\"></p><ul id=\"choice_list\"></ul>";
+        document.getElementById("node_navigation").innerHTML = "";
     }
     
     this.display_content = function(id){
@@ -80,10 +79,18 @@ function ChapterManager(init_state){
         var node_text = this.chapter_content[id]["description"];
         var choices = this.chapter_content[id]["choices"];
 
-        // TODO: create node_text and choice_list if they don't exist, so that to avoid creating them in play_page.html
+        var collection_navigation_element = document.getElementById("node_navigation");
+        collection_navigation_element.innerHTML = "";
+        var node_text_element = document.createElement("p")
+        node_text_element.id = "node_text"
+        var choices_list = document.createElement("ul")
+        choices_list.id = "choice_list"
 
-        document.getElementById("node_text").innerText = node_text;
-        document.getElementById("choice_list").innerHTML = "";
+        node_text_element.innerText = node_text;
+        choices_list.innerHTML = "";
+
+        collection_navigation_element.appendChild(node_text_element)
+        collection_navigation_element.appendChild(choices_list)
 
         for (var i=0, c=choices.length; i<c; i++){
             var choice = choices[i]
