@@ -12,9 +12,11 @@ function ChapterInfo(id, name, url){
 
 var chapter_1 = new ChapterInfo("chapter_1", "Chapter 1", content_url + "first_chapter.json");
 var chapter_2 = new ChapterInfo("chapter_2", "Chapter 2", content_url + "second_chapter.json");
+var stealing_icare = new ChapterInfo("stealing_icare", "Stealing Icare", content_url + "stealing_icare.json");
 
 COLLECTION_DICT[chapter_1._id] = chapter_1
 COLLECTION_DICT[chapter_2._id] = chapter_2
+COLLECTION_DICT[stealing_icare._id] = stealing_icare
 
 
 function SessionManager(init_state, collection_dict){
