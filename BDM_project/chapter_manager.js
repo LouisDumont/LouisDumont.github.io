@@ -1,7 +1,7 @@
-var nodeId_to_int_parser = function(nodeId){
-    var aux = nodeId.split("_")[1].split("\\")[0];
-    return parseInt(aux);
-}
+// var nodeId_to_int_parser = function(nodeId){
+    // var aux = nodeId.split("_")[1].split("\\")[0];
+    // return parseInt(aux);
+// }
 
 function ChapterManager(init_state){
     this.state = init_state;
@@ -13,10 +13,12 @@ function ChapterManager(init_state){
     this.make_nodes_dict = function(content){
         // Returns a dict mapping from node_ids to idx in the content array
         var dict = {};
-        for (var i=0, c=content.length; i<c; i++){
+        // var idx = 1;  // I started at 1 for historical reasons (fear of introducing a bug), should be 0
+        for (var i=1, c=content.length+1; i<c; i++){
             var node = content[i];
-            var idx = nodeId_to_int_parser(node.id);
-            dict[node.id] = idx;
+            //var idx = nodeId_to_int_parser(node.id);
+            dict[node.id] = i;
+            //idx += 1;
         }
         return dict;
     }
